@@ -1,0 +1,42 @@
+<!DOCTYPE fleet_management [
+
+<!ELEMENT fleet_management (drivers, vehicles)>
+<!ELEMENT drivers (driver*)>
+<!ELEMENT driver (firstName, lastName, id, address, email, phoneNumber, distanceTraveled)>
+<!ELEMENT firstName (#PCDATA)>
+<!ELEMENT lastName (#PCDATA)>
+<!ELEMENT id (#PCDATA)>
+<!ELEMENT address (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT phoneNumber (#PCDATA)>
+<!ELEMENT distanceTraveled (#PCDATA)>
+<!ELEMENT vehicles (vehicle*)>
+<!ELEMENT vehicle (details, trips)>
+<!ELEMENT details (manufacturer, model, registrationPlate, vin, engineCapacity, fuelType, horsepower, fuelConsumption, kilometrage)>
+<!ELEMENT manufacturer (#PCDATA)>
+<!ELEMENT model (#PCDATA)>
+<!ELEMENT registrationPlate (#PCDATA)>
+<!ELEMENT vin (#PCDATA)>
+<!ELEMENT engineCapacity (#PCDATA)>
+<!ELEMENT fuelType (#PCDATA)>
+<!ELEMENT horsepower (#PCDATA)>
+<!ELEMENT fuelConsumption (#PCDATA)>
+<!ELEMENT kilometrage (#PCDATA)>
+<!ELEMENT trips (trip*)>
+<!ELEMENT trip (tripId, tripDriver, startDate, startLocation, stopDate, stopLocation, distance)>
+<!ELEMENT tripId (#PCDATA)>
+<!ELEMENT tripDriver (driverFirstName, driverLastName, driverId)>
+<!ELEMENT driverFirstName (#PCDATA)>
+<!ELEMENT driverLastName (#PCDATA)>
+<!ELEMENT driverId (#PCDATA)>
+<!ELEMENT startDate (#PCDATA)>
+<!ELEMENT startLocation (startLat, startLong)>
+<!ELEMENT startLat (#PCDATA)>
+<!ELEMENT startLong (#PCDATA)>
+<!ELEMENT stopDate (#PCDATA)>
+<!ELEMENT stopLocation (stopLat, stopLong)>
+<!ELEMENT stopLat (#PCDATA)>
+<!ELEMENT stopLong (#PCDATA)>
+<!ELEMENT distance (#PCDATA)>
+
+]>

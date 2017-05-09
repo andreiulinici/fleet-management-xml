@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="file:fleet_management.xsd" elementFormDefault="qualified">
+	<xs:element name="fleet_management">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="drivers" minOccurs="1" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="driver" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="firstname" type="xs:string" minOccurs="1" maxOccurs="1"/>
+										<xs:element name="lastname" type="xs:string" minOccurs="1" maxOccurs="1"/>
+										<xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1"/>
+										<xs:element name="address" type="xs:string" minOccurs="1" maxOccurs="1"/>
+										<xs:element name="email" type="xs:string" minOccurs="1" maxOccurs="1"/>
+										<xs:element name="address" type="xs:string" minOccurs="1" maxOccurs="1"/>
+										<xs:element name="phoneNumber" type="xs:string" minOccurs="1" maxOccurs="1"/>
+										<xs:element name="distanceTraveled" type="xs:unsignedInt" minOccurs="1" maxOccurs="1">
+											<xs:simpleType> 
+												<xs:restriction base="xs:unsignedInt"> 
+													<xs:minInclusive value="0"/>
+													<xs:maxInclusive value="1000000"/> 
+												</xs:restriction> 
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="vehicles" minOccurs="1" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="vehicle" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="details" minOccurs="1" maxOccurs="1">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="manufacturer" type="xs:string" minOccurs="1" maxOccurs="1"/>
+													<xs:element name="model" type="xs:string" minOccurs="1" maxOccurs="1"/>
+													<xs:element name="registrationPlate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+													<xs:element name="vin" type="xs:string" minOccurs="1" maxOccurs="1">
+														<xs:simpleType name="vinSize">
+															<xs:restriction base="xs:string">
+																<xs:length value="17"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="engineCapacity" type="xs:string" minOccurs="1" maxOccurs="1"/>
+													<xs:element name="fuelType" type="xs:string" minOccurs="1" maxOccurs="1">
+														<xs:simpleType>
+															<xs:restriction base="xs:string"> 
+																<xs:enumeration value="Petrol"/>
+																<xs:enumeration value="Diesel"/>
+																<xs:enumeration value="Hybrid"/>
+																<xs:enumeration value="Gas"/>
+																<xs:enumeration value="Electric"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="horsepower" type="xs:unsignedShort" minOccurs="1" maxOccurs="1">
+														<xs:simpleType> 
+															<xs:restriction base="xs:unsignedShort"> 
+																<xs:minInclusive value="0"/>
+																<xs:maxInclusive value="1500"/> 
+															</xs:restriction> 
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="fuelConsumption" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+													<xs:element name="kilometrage" type="xs:unsignedInt" minOccurs="1" maxOccurs="1">
+														<xs:simpleType> 
+															<xs:restriction base="xs:unsignedInt"> 
+																<xs:minInclusive value="0"/>
+																<xs:maxInclusive value="1000000"/> 
+															</xs:restriction> 
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="trips" minOccurs="1" maxOccurs="1">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="trip" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="tripId" type="xs:string" minOccurs="1" maxOccurs="1"/>
+																<xs:element name="tripDriver" minOccurs="1" maxOccurs="1">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element ref="firstname" type="xs:string" minOccurs="1" maxOccurs="1"/>
+																			<xs:element ref="lastname" type="xs:string" minOccurs="1" maxOccurs="1"/>
+																			<xs:element ref="id" type="xs:string" minOccurs="1" maxOccurs="1"/>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="startDate" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+																<xs:element name="startLocation" type="xs:string" minOccurs="1" maxOccurs="1">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="startLat" type="xs:string" minOccurs="1" maxOccurs="1"/>
+																			<xs:element name="startLong" type="xs:string" minOccurs="1" maxOccurs="1"/>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="stopDate" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+																<xs:element name="stopLocation" type="xs:string" minOccurs="1" maxOccurs="1">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="stopLat" type="xs:string" minOccurs="1" maxOccurs="1"/>
+																			<xs:element name="stopLong" type="xs:string" minOccurs="1" maxOccurs="1"/>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="distance" type="xs:string" minOccurs="1" maxOccurs="1">
+																	<xs:simpleType> 
+																		<xs:restriction base="xs:unsignedInt"> 
+																			<xs:minInclusive value="0"/>
+																			<xs:maxInclusive value="1000000"/> 
+																		</xs:restriction> 
+																	</xs:simpleType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
