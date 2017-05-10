@@ -88,7 +88,7 @@ function selectedVehicleRegistrationPlateIndex() {
 
 function selectedDriverID() {
     var driverName;
-
+    
     for (var i = 0; i < drivers.length; i++) {
         driverName = drivers[i].firstName + " " + drivers[i].lastName;
         
@@ -102,13 +102,13 @@ function calculateVehicleDistanceTraveled(startDate, stopDate) {
     var index = selectedVehicleRegistrationPlateIndex();
     var distanceTraveled = 0;
 
-    for (var i = 0; i < vehicles[index].trips.length; i++) {
-        if (startDate <= vehicles[index].trips[i].startDate && stopDate >= vehicles[index].trips[i].stopDate) {
-            distanceTraveled += vehicles[index].trips[i].distance;
+    for (var i = 0; i < vehicles[index].trips.trip.length; i++) {
+        if (startDate <= vehicles[index].trips.trip[i].startDate && stopDate >= vehicles[index].trips.trip[i].stopDate) {
+            distanceTraveled += vehicles[index].trips.trip[i].distance;
         }
     }
 
-    $('#reportsVehicleDistanceTraveled').text(distanceTraveled);
+    $('#reportsVehicleDistanceTraveled').text(Number(distanceTraveled));
 }
 
 function calculateDriverDistanceTraveled(startDate, stopDate) {
@@ -116,15 +116,15 @@ function calculateDriverDistanceTraveled(startDate, stopDate) {
     var driverID = selectedDriverID();
 
     for (var i = 0; i < vehicles.length; i++) {
-        for (var j = 0; j < vehicles[i].trips.length; j++) {
+        for (var j = 0; j < vehicles[i].trips.trip.length; j++) {
             
-            if (vehicles[i].trips[j].driver.id === driverID) {                
-                if (startDate <= vehicles[i].trips[j].startDate && stopDate >= vehicles[i].trips[j].stopDate) {
-                    distanceTraveled += vehicles[i].trips[j].distance;
+            if (vehicles[i].trips.trip[j].tripDriver.driverId === driverID) {                
+                if (startDate <= vehicles[i].trips.trip[j].startDate && stopDate >= vehicles[i].trips.trip[j].stopDate) {
+                    distanceTraveled += vehicles[i].trips.trip[j].distance;
                 }
             }
         }
     }
 
-    $('#reportsDriverDistanceTraveled').text(distanceTraveled);
+    $('#reportsDriverDistanceTraveled').text(Number(distanceTraveled));
 }

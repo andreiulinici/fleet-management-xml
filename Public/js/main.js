@@ -1,8 +1,7 @@
 var drivers = initializeDriversToLocalStorage();
 var vehicles = initializeVehiclesToLocalStorage();
 
-function parseObjFromXml() {
-    
+function parseObjFromXml() {    
     xml = loadXMLDoc("fleet_management.xml");
 
     var obj = XML2jsobj(xml.documentElement);
@@ -11,7 +10,6 @@ function parseObjFromXml() {
 }
 
 function XML2jsobj(node) {
-
 	var	data = {};
 
 	// append a value
@@ -50,8 +48,7 @@ function XML2jsobj(node) {
 	return data;
 }
 
-function loadXMLDoc(filename) {
-    
+function loadXMLDoc(filename) {    
     if (window.ActiveXObject) {
         xhttp = new ActiveXObject("Msxml2.XMLHTTP");
     } else {
@@ -131,11 +128,14 @@ $(document).ready(function () {
     $('#homePageHeader').addClass("active");
 
     displayXmlTables();
+    $("#xmlTables").hide();
     $("#xmlDrivers").hide();
     $("#xmlVehicles").hide();
+    $("#xmlTrips").hide();
 
     initializeDriversPage();
     initializeVehiclesPage();
+    initializeTripsPage();
     initializeReportsPage();
 
     $("#homePageHeader").click(function () {
@@ -151,6 +151,7 @@ $(document).ready(function () {
         $(this).addClass("active");
         $("#xmlDrivers").hide();
         $("#xmlVehicles").hide();
+        $("#xmlTrips").hide();
     });
 
     $("#driversPageHeader").click(function () {
@@ -164,8 +165,10 @@ $(document).ready(function () {
         $('.menu-list ul li').removeClass("active");
         $('.sub-menu li').removeClass("active");
         $(this).addClass("active");
+        $("#xmlTables").show();
         $("#xmlDrivers").show();
         $("#xmlVehicles").hide();
+        $("#xmlTrips").hide();
     });
 
     $("#addDriverHeader").click(function () {
@@ -179,8 +182,10 @@ $(document).ready(function () {
         $('.menu-list ul li').removeClass("active");
         $('.sub-menu li').removeClass("active");
         $(this).addClass("active");
+        $("#xmlTables").hide();
         $("#xmlDrivers").hide();
         $("#xmlVehicles").hide();
+        $("#xmlTrips").hide();
     });
 
     $("#vehiclesPageHeader").click(function () {
@@ -194,8 +199,10 @@ $(document).ready(function () {
         $('.menu-list ul li').removeClass("active");
         $('.sub-menu li').removeClass("active");
         $(this).addClass("active");
+        $("#xmlTables").show();
         $("#xmlDrivers").hide();
         $("#xmlVehicles").show();
+        $("#xmlTrips").hide();
     });
 
     $("#addVehicleHeader").click(function () {
@@ -209,10 +216,26 @@ $(document).ready(function () {
         $('.menu-list ul li').removeClass("active");
         $('.sub-menu li').removeClass("active");
         $(this).addClass("active");
-        $("#xmlDrivers").hide();
-        $("#xmlVehicles").hide();
+        $("#xmlTables").hide();
     });
 
+    $("#tripsPageHeader").click(function () {
+        $("#homePage").hide();
+        $("#driversPage").hide();
+        $("#addDriverPage").hide();
+        $("#vehiclesPage").hide();
+        $("#addVehiclePage").hide();
+        $("#viewVehicleTripsPage").hide();
+        $("#reportsPage").hide();
+        $('.menu-list ul li').removeClass("active");
+        $('.sub-menu li').removeClass("active");
+        $(this).addClass("active");
+        $("#xmlTables").show();
+        $("#xmlDrivers").hide();
+        $("#xmlVehicles").hide();
+        $("#xmlTrips").show();
+    });
+    
     $("#reportsPageHeader").click(function () {
         $("#homePage").hide();
         $("#driversPage").hide();
@@ -224,8 +247,7 @@ $(document).ready(function () {
         $('.menu-list ul li').removeClass("active");
         $('.sub-menu li').removeClass("active");
         $(this).addClass("active");
-        $("#xmlDrivers").hide();
-        $("#xmlVehicles").hide();
+        $("#xmlTables").hide();
 
         reportsViewVehicleDistanceTraveled();
         reportsViewDriverDistanceTraveled();

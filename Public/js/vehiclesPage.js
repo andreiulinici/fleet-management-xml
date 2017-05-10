@@ -1,19 +1,19 @@
 function initializeVehiclesPage() {
     var editSpan = $('<span>').addClass('glyphicon glyphicon-pencil');
     var deleteSpan = $('<span>').addClass('glyphicon glyphicon-trash');
-    var tripsSpan = $('<span>').addClass('glyphicon glyphicon-road');
     var editButton = $('<button>').addClass('btn btn-primary btn-md').attr('data-toggle', 'modal').attr('data-title', 'Edit').attr('data-target', '#editVehicleModal').append(editSpan).click(editVehicle);
     var deleteButton = $('<button>').addClass('btn btn-danger btn-md').attr('data-toggle', 'modal').attr('data-title', 'Delete').attr('data-target', '#deleteVehicleModal').append(deleteSpan).click(deleteVehicle);
-    var tripsButton = $('<button>').addClass('btn btn-success btn-md').append(tripsSpan).click(viewVehicleTrips);
     var editVehicleButton = $('<p>').addClass('operations').attr('data-placement', 'top').attr('data-toggle', 'tooltip').attr('title', 'Edit').append(editButton);
     var deleteVehicleButton = $('<p>').addClass('operations').attr('data-placement', 'top').attr('data-toggle', 'tooltip').attr('title', 'Delete').append(deleteButton);
-    var viewVehicleTripsButton = $('<p>').addClass('operations').attr('data-placement', 'top').attr('data-toggle', 'tooltip').attr('title', 'View vehicle trips').append(tripsButton);
 
-    $("#vehiclesTable tbody tr").find("td:eq(9)").append(viewVehicleTripsButton);
-    $("#vehiclesTable tbody tr").find("td:eq(10)").append(editVehicleButton);
-    $("#vehiclesTable tbody tr").find("td:eq(11)").append(deleteVehicleButton);
+    $("#vehiclesTable tbody tr").find("td:eq(9)").append(editVehicleButton);
+    $("#vehiclesTable tbody tr").find("td:eq(10)").append(deleteVehicleButton);
 
     $("[data-toggle=tooltip]").tooltip();
+}
+
+function initializeTripsPage() {
+    viewVehicleTrips();
 }
 
 function addVehicle() {
@@ -42,13 +42,10 @@ function addVehicle() {
 function addVehicleToTable(vehicle, index) {
     var editSpan = $('<span>').addClass('glyphicon glyphicon-pencil');
     var deleteSpan = $('<span>').addClass('glyphicon glyphicon-trash');
-    var tripsSpan = $('<span>').addClass('glyphicon glyphicon-road');
     var editButton = $('<button>').addClass('btn btn-primary btn-md').attr('data-toggle', 'modal').attr('data-title', 'Edit').attr('data-target', '#editVehicleModal').append(editSpan).click(editVehicle);
     var deleteButton = $('<button>').addClass('btn btn-danger btn-md').attr('data-toggle', 'modal').attr('data-title', 'Delete').attr('data-target', '#deleteVehicleModal').append(deleteSpan).click(deleteVehicle);
-    var tripsButton = $('<button>').addClass('btn btn-success btn-md').append(tripsSpan).click(viewVehicleTrips);
     var editVehicleButton = $('<p>').addClass('operations').attr('data-placement', 'top').attr('data-toggle', 'tooltip').attr('title', 'Edit').append(editButton);
     var deleteVehicleButton = $('<p>').addClass('operations').attr('data-placement', 'top').attr('data-toggle', 'tooltip').attr('title', 'Delete').append(deleteButton);
-    var viewVehicleTripsButton = $('<p>').addClass('operations').attr('data-placement', 'top').attr('data-toggle', 'tooltip').attr('title', 'View vehicle trips').append(tripsButton);
 
     $('#vehiclesTable').find('tbody').append($('<tr>').append($('<td>').attr('data-label', 'Manufacturer').text(vehicle.details.manufacturer)));
     $('#vehiclesTable tr:last').append($('<td>').attr('data-label', 'Model').text(vehicle.details.model));
@@ -59,7 +56,6 @@ function addVehicleToTable(vehicle, index) {
     $('#vehiclesTable tr:last').append($('<td>').attr('data-label', 'Horsepower').text(vehicle.details.horsepower));
     $('#vehiclesTable tr:last').append($('<td>').attr('data-label', 'Fuel consumption').text(vehicle.details.fuelConsumption));
     $('#vehiclesTable tr:last').append($('<td>').attr('data-label', 'Kilometrage').text(vehicle.details.kilometrage));
-    $('#vehiclesTable tr:last').append($('<td>').attr('data-label', 'Trips').append(viewVehicleTripsButton));
     $('#vehiclesTable tr:last').append($('<td>').attr('data-label', 'Edit vehicle').append(editVehicleButton));
     $('#vehiclesTable tr:last').append($('<td>').attr('data-label', 'Delete vehicle').append(deleteVehicleButton));
 }
@@ -122,17 +118,12 @@ function deleteVehicle() {
 }
 
 function viewVehicleTrips() {
-    var $vehicleRow = $(this).closest('tr');
-    var rowID = $vehicleRow.index();
-
-    $("#vehiclesPage").hide();
-    $("#viewVehicleTripsPage").show();
-
-    $('#tripsTable').find('tbody').remove();
-    $('#tripsTable').append('<tbody>');
-
-    for (var i = 0; i < vehicles[rowID].trips.length; i++) {
-        addTripsToTable(vehicles[rowID].trips[i], i);
+    var k = 0;
+    for (var i = 0; i < vehicles.length; i++) {
+        for (var j = 0; j < vehicles[i].trips.trip.length; j++) {
+            addTripsToTable(vehicles[i].trips.trip[j], k);
+            k++;
+        }
     }
 
     //$("[data-toggle=tooltip]").tooltip();
@@ -147,20 +138,14 @@ function addTripsToTable(trip, index) {
 
     var tripSpan = $('<span>').addClass('glyphicon glyphicon-road');
     var tripButton = $('<button>').addClass('btn btn-success btn-md').attr('data-toggle', 'modal').attr('data-title', 'View trip').append(tripSpan).on('click', function () {
-        initMap(trip.id);
+        initMap(trip.tripId);
     });
     var viewTripButton = $('<p>').addClass('operations').attr('data-placement', 'top').attr('data-toggle', 'tooltip').attr('title', 'View trip').append(tripButton);
 
-    $('#tripsTable').find('tbody').append($('<tr>').append($('<td>').attr('data-label', 'Driver').text(trip.driver.firstName + ' ' + trip.driver.lastName)));
-    $('#tripsTable tr:last').append($('<td>').attr('data-label', 'Start date').text(startDate));
-    $('#tripsTable tr:last').append($('<td>').attr('data-label', 'Start location').text(trip.startLocation.lat + ', ' + trip.startLocation.long));
-    $('#tripsTable tr:last').append($('<td>').attr('data-label', 'Stop date').text(stopDate));
-    $('#tripsTable tr:last').append($('<td>').attr('data-label', 'Stop location').text(trip.stopLocation.lat + ', ' + trip.stopLocation.long));
-    $('#tripsTable tr:last').append($('<td>').attr('data-label', 'Trip distance').text(trip.distance));
-    $('#tripsTable tr:last').append($('<td>').attr('data-label', 'Trips').append(viewTripButton));
+    $('#tripsTable tbody tr:eq(' + index + ')').find('td:eq(6)').attr('data-label', 'Trips').append(viewTripButton);
 
-    getAddress(trip.startLocation.lat, trip.startLocation.long, index, 2);
-    getAddress(trip.stopLocation.lat, trip.stopLocation.long, index, 4);
+    getAddress(trip.startLocation.startLat, trip.startLocation.startLong, index, 2);
+    getAddress(trip.stopLocation.stopLat, trip.stopLocation.stopLong, index, 4);
 }
 
 function sleep(milliseconds) {
@@ -185,29 +170,9 @@ function getAddress(myLatitude, myLongitude, row, col) {
             if (status === google.maps.GeocoderStatus.OK) { // if geocode success
                 var table = document.getElementById("tripsTable");
                 table.rows[row + 1].cells[col].innerHTML = results[0].formatted_address;
-            } else {
-                sleep(1000);
-                geocoder.geocode({
-                    'latLng': location
-                }, function (results, status) {
-                    if (status === google.maps.GeocoderStatus.OK) { // if geocode success
-                        var table = document.getElementById("tripsTable");
-                        table.rows[row + 1].cells[col].innerHTML = results[0].formatted_address;
-                    } else {
-                        sleep(1000);
-                        geocoder.geocode({
-                            'latLng': location
-                        }, function (results, status) {
-                            if (status === google.maps.GeocoderStatus.OK) { // if geocode success
-                                var table = document.getElementById("tripsTable");
-                                table.rows[row + 1].cells[col].innerHTML = results[0].formatted_address;
-                            }
-                        });
-                    }
-                });
             }
         })
-    }, 1000);
+    }, 50);
 }
 
 function initMap(tripID) {

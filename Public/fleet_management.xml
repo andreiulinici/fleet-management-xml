@@ -108,12 +108,12 @@
                         <driverLastName>Doe</driverLastName>
                         <driverId>1810329135411</driverId>
                     </tripDriver>
-                    <startDate>2017-03-22T10:28:06.419Z</startDate>
+                    <startDate>2017-03-23T10:28:06.419Z</startDate>
                     <startLocation>
                         <startLat>44.2462965</startLat>
                         <startLong>28.2683479</startLong>
                     </startLocation>
-                    <stopDate>2017-03-22T13:28:06.419Z</stopDate>
+                    <stopDate>2017-03-23T13:28:06.419Z</stopDate>
                     <stopLocation>
                         <stopLat>44.1812565</stopLat>
                         <stopLong>28.5592996</stopLong>
@@ -142,12 +142,31 @@
                         <driverLastName>Craig</driverLastName>
                         <driverId>2820329135412</driverId>
                     </tripDriver>
-                    <startDate>2017-03-20T09:28:06.419Z</startDate>
+                    <startDate>2017-03-22T09:28:06.419Z</startDate>
                     <startLocation>
                         <startLat>44.2462965</startLat>
                         <startLong>28.2683479</startLong>
                     </startLocation>
-                    <stopDate>2017-03-20T12:28:06.419Z</stopDate>
+                    <stopDate>2017-03-22T12:28:06.419Z</stopDate>
+                    <stopLocation>
+                        <stopLat>44.1812565</stopLat>
+                        <stopLong>28.5592996</stopLong>
+                    </stopLocation>
+                    <distance>40</distance>
+                </trip>
+				<trip>
+                    <tripId>B-58-PKB-0001</tripId>
+                    <tripDriver>
+                        <driverFirstName>Anna</driverFirstName>
+                        <driverLastName>Craig</driverLastName>
+                        <driverId>2820329135412</driverId>
+                    </tripDriver>
+                    <startDate>2017-03-23T09:28:06.419Z</startDate>
+                    <startLocation>
+                        <startLat>44.2462965</startLat>
+                        <startLong>28.2683479</startLong>
+                    </startLocation>
+                    <stopDate>2017-03-23T12:28:06.419Z</stopDate>
                     <stopLocation>
                         <stopLat>44.1812565</stopLat>
                         <stopLong>28.5592996</stopLong>
@@ -188,6 +207,44 @@
                     </stopLocation>
                     <distance>130</distance>
                 </trip>
+				<trip>
+                    <tripId>B-58-PKC-0001</tripId>
+                    <tripDriver>
+                        <driverFirstName>Michael</driverFirstName>
+                        <driverLastName>Douglas</driverLastName>
+                        <driverId>1830329135413</driverId>
+                    </tripDriver>
+                    <startDate>2017-03-12T13:28:06.419Z</startDate>
+                    <startLocation>
+                        <startLat>45.3410878</startLat>
+                        <startLong>25.5164496</startLong>
+                    </startLocation>
+                    <stopDate>2017-03-12T18:28:06.419Z</stopDate>
+                    <stopLocation>
+                        <stopLat>44.4378043</stopLat>
+                        <stopLong>26.0245982</stopLong>
+                    </stopLocation>
+                    <distance>130</distance>
+                </trip>
+<trip>
+                    <tripId>B-58-PKC-0002</tripId>
+                    <tripDriver>
+                        <driverFirstName>Michael</driverFirstName>
+                        <driverLastName>Douglas</driverLastName>
+                        <driverId>1830329135413</driverId>
+                    </tripDriver>
+                    <startDate>2017-03-15T13:28:06.419Z</startDate>
+                    <startLocation>
+                        <startLat>45.3410878</startLat>
+                        <startLong>25.5164496</startLong>
+                    </startLocation>
+                    <stopDate>2017-03-15T18:28:06.419Z</stopDate>
+                    <stopLocation>
+                        <stopLat>44.4378043</stopLat>
+                        <stopLong>26.0245982</stopLong>
+                    </stopLocation>
+                    <distance>130</distance>
+                </trip>				
             </trips>
         </vehicle>
         <vehicle>
@@ -216,6 +273,25 @@
                         <startLong>26.0245982</startLong>
                     </startLocation>
                     <stopDate>2017-04-10T13:28:06.419Z</stopDate>
+                    <stopLocation>
+                        <stopLat>44.8559646</stopLat>
+                        <stopLong>24.8384835</stopLong>
+                    </stopLocation>
+                    <distance>120</distance>
+                </trip>
+				<trip>
+                    <tripId>B-58-PKD-0001</tripId>
+                    <tripDriver>
+                        <driverFirstName>Richard</driverFirstName>
+                        <driverLastName>Gere</driverLastName>
+                        <driverId>1840329135414</driverId>
+                    </tripDriver>
+                    <startDate>2017-05-09T10:28:06.419Z</startDate>
+                    <startLocation>
+                        <startLat>44.4378043</startLat>
+                        <startLong>26.0245982</startLong>
+                    </startLocation>
+                    <stopDate>2017-05-09T13:28:06.419Z</stopDate>
                     <stopLocation>
                         <stopLat>44.8559646</stopLat>
                         <stopLong>24.8384835</stopLong>

@@ -4,7 +4,7 @@
     "description": "Fleet Management website",
 	"repository": {
         "type": "git",
-        "url": "git://github.com/andreiulinici/fleet-management.git"
+        "url": "git://github.com/andreiulinici/fleet-management-xml.git"
     },
     "main": "server.js",
     "scripts": {
